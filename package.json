@@ -1,0 +1,31 @@
+{
+  "name": "second",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.1.0",
+    "fast-json-parse": "^1.0.3",
+    "fast-safe-stringify": "^2.0.6",
+    "helmet": "^3.18.0",
+    "lodash": "^4.17.11",
+    "mysql2": "^1.6.5",
+    "redis-pool-connection": "^1.4.0",
+    "sequelize": "^5.9.0",
+    "x-xss-protection": "^1.2.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1"
+  }
+}
