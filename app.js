@@ -18,6 +18,7 @@ const parallelMiddleware = middlewares => (req, res, next) => async.each(middlew
 
 global._ = require('lodash');
 global.MISC = require(path.join(__dirname, '/app/helpers/misc'));
+global.MR = require(path.join(__dirname, '/app/helpers/message'));
 
 app.use(helmet());
 app.use(xssFilter());

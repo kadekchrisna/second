@@ -38,7 +38,7 @@ exports.showAll = (req, res, next) => {
         (cb) => {
             redisCache.get(key, result => {
                 if (result) {
-                    return MISC.responses(res, result);
+                    return MR.getMessageQuery(res, result, 200, true, 1);
                 }else {
                     cb(null);
                 }
@@ -53,9 +53,9 @@ exports.showAll = (req, res, next) => {
         }
     ], (err, result) => {
         if (!err) {
-            return MISC.responses(res, result);
+            return MR.getMessageQuery(res, result, 200, true, 1);
         }else {
             return MISC.errorCustom(res, err);
         }
-    })
+    });
 }

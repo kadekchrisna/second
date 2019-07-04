@@ -1,17 +1,16 @@
 const misc = {
-    responses: (res, obj, status, extras) => {
+    responses: (res, obj, status, success, message) => {
         let result = {};
-        result.status = status || 200;
-        if (_.isObject(obj)) {
-            result.data = obj;
-        } else {
-            result.message = obj;
-        }
+        let extras = {};
 
-        if (_.isObject(extras)) {
-            Object.assign(result.extras, extras);
-        }
-        return res.status(result.status).send(result);
+        result.status = status || 400;
+        extras.success = success,
+        extras.msg_code = message.msg_status_code,
+        extras.msg_client = message.msg_client,
+        extras.msg_server = message.msg_server,
+        extras.data = obj;
+        const responses = Object.assign(result, extras);
+        return res.status(result.status).send(responses);
     },
     errorCustom: (res, err, status) => {
         let errResult = {};
