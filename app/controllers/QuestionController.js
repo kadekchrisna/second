@@ -13,40 +13,41 @@ const redisCache = require('../lib/RedisCache');
 *
 *   @return {object} questions or error
 */
-exports.index = (req, res, next) => {
+exports.index = async(req, res, next) => {
 
-    const key = 'get-questions';
-    // try {
-    //     const question = await Question.get();
-    //     return MISC.responses(res, question);
-    // } catch (error) {
-    //     return MISC.errorCustom(res, error);
-    // }
+    // const key = 'get-questions';
+    try {
+        const question = await Question.get();
+        return MR.getMessageQuery(res, question, 200, true, 1);
+        // return MISC.responses(res, question);
+    } catch (error) {
+        return MISC.errorCustom(res, error);
+    }
 
-    async.waterfall([
-        (cb) => {
-            redisCache.get(key, result => {
-                if (result) {
-                    return MISC.responses(res, result);
-                } else {
-                    cb(null);
-                }
-            })
-        },
-        (cb) => {
-            Question.get().then(result => {
-                redisCache.setex(key, 1800, result);
-                console.log(`${key} successfully cached`);
-                cb(null, result);
-            }).catch(err => cb(err, null));
-        }
-    ], (err, result) => {
-        if (!err) {
-            return MISC.responses(res, result);
-        } else {
-            return MISC.errorCustom(res, err);
-        }
-    })
+    // async.waterfall([
+    //     (cb) => {
+    //         redisCache.get(key, result => {
+    //             if (result) {
+    //                 return MISC.responses(res, result);
+    //             } else {
+    //                 cb(null);
+    //             }
+    //         })
+    //     },
+    //     (cb) => {
+    //         Question.get().then(result => {
+    //             redisCache.setex(key, 1800, result);
+    //             console.log(`${key} successfully cached`);
+    //             cb(null, result);
+    //         }).catch(err => cb(err, null));
+    //     }
+    // ], (err, result) => {
+    //     if (!err) {
+    //         return MISC.responses(res, result);
+    //     } else {
+    //         return MISC.errorCustom(res, err);
+    //     }
+    // })
 }
 
 

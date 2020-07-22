@@ -20,7 +20,7 @@
     "helmet": "^3.18.0",
     "lodash": "^4.17.11",
     "mysql2": "^1.6.5",
-    "redis-pool-connection": "^1.4.0",
+    "redis": "^2.8.0",
     "sequelize": "^5.9.0",
     "x-xss-protection": "^1.2.0"
   },

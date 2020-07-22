@@ -16,7 +16,8 @@ const redisCache = require('../lib/RedisCache');
 exports.index = async (req, res, next) => {
     try {
         const user = await User.getAllUsers();
-        return MISC.responses(res, user);
+        return MR.getMessageQuery(res, user, 200, true, 1);
+        // return MISC.responses(res, user);
     } catch (error) {
         return MISC.errorCustom(res, error);
     }

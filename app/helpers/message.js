@@ -6,10 +6,10 @@ const Message = require('../services/message');
 const misc = require('../helpers/misc');
 
 
+
 const message = {
     getMessageQuery: (res, obj, status, success, message) => {
-        // console.log("---->"+status, success, message);
-
+        console.log("---->"+JSON.stringify(obj)+status, success, message);
         const key = message;
         async.waterfall([
             (cb) => {
